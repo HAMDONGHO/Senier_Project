@@ -15,6 +15,8 @@ class EnoB_Board(models.Model):
     registered_dttm = models.DateTimeField(auto_now_add=True,
                                             verbose_name='등록시간')
     
+    hits = models.IntegerField(default=0, verbose_name="조회수")
+    
 
     class Meta:
         db_table = 'EonB_Board'

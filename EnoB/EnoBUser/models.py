@@ -10,7 +10,7 @@ class EnoB_user(models.Model):
                                 verbose_name='사용자이름')
     phone = models.CharField(max_length=32,
                                 verbose_name='사용자번호')
-    birth = models.IntegerField(verbose_name='사용자생일')
+    birth = models.CharField(max_length=32,verbose_name='사용자생일')
     sex = models.CharField(max_length=16,
                                 verbose_name='성별')
     registered_dttm = models.DateTimeField(auto_now_add=True,
