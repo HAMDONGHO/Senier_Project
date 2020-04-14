@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class EnoB_user(models.Model):
+    
     email = models.EmailField(verbose_name='사용자이메일',primary_key=True)
     password = models.CharField(max_length=64,
                                 verbose_name='비밀번호')

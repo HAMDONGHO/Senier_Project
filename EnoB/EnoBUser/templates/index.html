@@ -1,1 +1,26 @@
-{% extends "base.html" %} {% block contents %} Hello! index!! {% endblock %}
+{% extends "base.html" %} {% block contents %}
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <h1>홈페이지!</h1>
+  </div>
+</div>
+<div class="row mt-5">
+  Hello world! {{ email }}
+  <div class="col-6">
+    <button
+      class="btn btn-primary btn-block"
+      onclick="location.href='/EnoBUser/login/'"
+    >
+      로그인
+    </button>
+  </div>
+  <div class="col-6">
+    <button
+      class="btn btn-primary btn-block"
+      onclick="location.href='/EnoBUser/register/'"
+    >
+      회원가입
+    </button>
+  </div>
+</div>
+{% endblock %}
