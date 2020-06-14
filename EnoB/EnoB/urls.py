@@ -19,7 +19,7 @@ from EnoBUser.views import index, RegisterView, LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('index/', index),
     path('register/', RegisterView.as_view()),
     path('login/', LoginView.as_view()),
 ]
