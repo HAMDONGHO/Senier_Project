@@ -29,12 +29,16 @@ asound = cdll.LoadLibrary('libasound.so')
 asound.snd_lib_error_set_handler(c_error_handler)
 
 def generate_request():
+    # with as 구문으로 음성을 열고 응답을 stream객체로 받아 처리하는 부분
     with MS.MicrophoneStream(RATE, CHUNK) as stream:
+        # audid_generater으로 제너레이터를 사용해 stream객체를 할당
         audio_generator = stream.generator()
     
         for content in audio_generator:
             message = gigagenieRPC_pb2.reqVoice()
             message.audioContent = content
+            # message에 기가지니 api의 텍스트변환 메소드를 지정하고 audioContent에
+            #stream객체를 받아와서 제너레이터로 메시지를 얻음
             yield message
             
             rms = audioop.rms(content,2)
@@ -50,6 +54,7 @@ def getVoice2Text():
     request = generate_request()
     resultText = ''
     #음성이 들어오는 실시간 상태에서는 200 값으로 출력 후, 최종 음성판단한 text에서 201 return.
+    #kt api 가이드에 보면 200은 시작부터 진행중, 201은 종료
     for response in stub.getVoice2Text(request):
         if response.resultCd == 200: # partial
             print('resultCd=%d | recognizedText= %s' 
